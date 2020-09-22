@@ -18,20 +18,16 @@ public class main {
 		
 		List<Integer> arrL = new ArrayList<>();
 		List<Integer> linkL = new LinkedList<>();
+		List<Integer> memL = new LinkedMemoryList<>();
 
-//		
-//		for(int i =0; i < 1000000; i++) {
-//			//check to make sure its working
-//			//if(i/10000 == 0) System.out.println("1000");
-//			L.add(i);
-//		}
-//		System.out.print(measureTime(L)); //works
-		//System.out.println("Testing Array List");
+		System.out.println("Testing Array List");
 		linearEvaluation("data1.txt", arrL); //testing how add works with ArrayList
-		//System.out.println("\n---------------------------------------\n");
+		System.out.println("\n---------------------------------------\n");
 		System.out.println("Testing Linked List");
 		linearEvaluation("data2.txt", linkL); // testing add with linkedlist
-
+		System.out.println("\n---------------------------------------\n");
+		System.out.println("Testing Linked Memory List");
+		linearEvaluation("data3.txt",memL); // testing LinkMemoryList
 	}
 	
 	/*
@@ -64,6 +60,8 @@ public class main {
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
 			System.out.println("N\tMeanTime");
+			bw.write("N\tMeanTime");
+			bw.newLine();
 			//loop through and start at 10000 in the list and increment by 10000
 			for(int i =10000; i <= 200000; i += 10000) {
 				double meanTime = 0;
