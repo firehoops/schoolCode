@@ -62,17 +62,21 @@ public class main {
 			System.out.println("N\tMeanTime");
 			bw.write("N\tMeanTime");
 			bw.newLine();
+			int counter = 0;
 			//loop through and start at 10000 in the list and increment by 10000
 			for(int i =10000; i <= 200000; i += 10000) {
 				double meanTime = 0;
-				//loop through 3 times checking time
-				for(int j =0; j<3; j++) {
-					emptyList.clear(); // clearing list so can re add to get proper mean 
-					
-					//add 10000 at a time to the list
-					for(int k = 0; k<i; k++) {
-						emptyList.add(k);
-					}
+				//emptyList.clear(); // reseting list 
+				//add 10000 at a time to the list
+//				for(int j = 0; j<i; j++) {
+//					emptyList.add(j);
+//				}
+				while(counter < i) {
+					emptyList.add(counter);
+					counter++; 
+				}
+				//add up the times it takes to add the list
+				for(int k =0; k<3; k++) {
 					meanTime += measureTime(emptyList);
 				}//end of 3x loop print N and take the mean of the times
 				bw.write(i + "\t" + roundDouble((meanTime/3.0),2));

@@ -86,22 +86,24 @@ public class LinkedMemoryList<E> implements List<E>{
     public E get(int i){
     	if(i<0 || i>=size) return null;
         Node n = head;
-        int temp = i;
 //        if(i == size) { //checking if tail is the index
 //        	lastAccess = tail; 
 //        	lastAccessIndex = temp; 
 //        	return (E) tail.data;
 //        }
         //if position is before last recorded index start from beginning and move on
-        if(i < lastAccessIndex) {
+        if(i == lastAccessIndex) {
+        	lastAccess = n; 
+        	return (E) n.data; 
+        } else if(i < lastAccessIndex) {
         	while(i!=0){
                 n=n.next;
                 i--;
-                lastAccessIndex--;
             }
+        	lastAccessIndex = i; 
         } else {
         	n = lastAccess;
-        	while(i > lastAccessIndex || i>=size) {
+        	while(i > lastAccessIndex) {
         		n = n.next;  
         		lastAccessIndex++; 
         	}
